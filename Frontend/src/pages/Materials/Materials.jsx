@@ -18,7 +18,7 @@ function Materials() {
   const fetchMaterials = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/materials"
+        "https://nao-ysu5.onrender.com/api/materials"
       );
 
       console.log("API Response:", response.data);

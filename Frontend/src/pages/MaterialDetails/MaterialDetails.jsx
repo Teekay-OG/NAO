@@ -12,26 +12,29 @@ function MaterialDetails() {
 
     useEffect(() => {
 
-        const fetchMaterial = async () => {
+    const fetchMaterial = async () => {
 
-            try {
+        try {
 
-                const response = await axios.get(
-                    `http://localhost:4000/api/materials/${id}`
-                );
+            const response = await axios.get(
+                `https://nao-ysu5.onrender.com/api/materials/${id}`
+            );
 
-                setMaterial(response.data);
+            setMaterial(response.data);
 
-            } catch (error) {
-    console.log(error);
-    console.log(error.response);
-}
+        } catch (error) {
 
-        };
+            console.log(error);
+            console.log(error.response);
 
-        fetchMaterial();
+        }
 
-    }, [id]);
+    };
+
+    fetchMaterial();
+
+}, [id]);
+       
 
     if (!material) {
         return <h2>Loading...</h2>;

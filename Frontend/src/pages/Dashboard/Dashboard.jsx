@@ -21,21 +21,27 @@ function Dashboard() {
   const [materials, setMaterials] = useState([]);
   const [risks, setRisks] = useState([]);
 
-  useEffect(() => {
-    const fetchDashboard = async () => {
-      try {
-        const materialsResponse = await axios.get("http://localhost:4000/api/materials");
-        const risksResponse = await axios.get("http://localhost:4000/api/risks");
+ useEffect(() => {
+  const fetchDashboard = async () => {
+    try {
+      const materialsResponse = await axios.get(
+        "https://nao-ysu5.onrender.com/api/materials"
+      );
 
-        setMaterials(materialsResponse.data);
-        setRisks(risksResponse.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+      const risksResponse = await axios.get(
+        "https://nao-ysu5.onrender.com/api/risks"
+      );
 
-    fetchDashboard();
-  }, []);
+      setMaterials(materialsResponse.data);
+      setRisks(risksResponse.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  fetchDashboard();
+}, []);
+
 
   const highRisks = risks.filter(risk => risk.severity === "High").length;
   const countries = new Set(risks.map(risk => risk.location)).size;
